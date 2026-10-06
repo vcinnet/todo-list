@@ -23,6 +23,7 @@ public class TodoListPanel extends JPanel implements ActionListener {
     private final JTextField textField;
     private final DefaultListModel<String> textModel;
     private final TodoList todoList;
+    private int selectedIndex;
 
     public TodoListPanel() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -163,7 +164,7 @@ public class TodoListPanel extends JPanel implements ActionListener {
     }
 
     private void selectItem(JList<String> textList) {
-        int selectedIndex = textList.getSelectedIndex();
+        selectedIndex = textList.getSelectedIndex();
 
         if (selectedIndex != -1) {
             textField.setText(todoList.getTitle(selectedIndex));
@@ -173,8 +174,14 @@ public class TodoListPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent evt) {
         String title = textField.getText();
+        if (selectedIndex == -1) {
+            todoList.addItem(title);
+        }
+        else{
+            todoList.editItem(selectedIndex,title);
+            selectedIndex=-1;
 
-        todoList.addItem(title);
+        }
 
         updateTodoModel();
         textField.selectAll();

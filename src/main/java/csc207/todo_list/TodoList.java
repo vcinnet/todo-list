@@ -14,6 +14,10 @@ public class TodoList {
     items.add(new TodoItem(title));
   }
 
+  public void editItem(int selectedIndex, String title) {
+    items.get(selectedIndex).editTitle(title);
+  }
+
   public void addItem(String title, boolean completed) {
     items.add(new TodoItem(title, completed));
   }

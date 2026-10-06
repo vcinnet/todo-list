@@ -1,7 +1,7 @@
 package csc207.todo_list;
 
 public class TodoItem {
-  private final String title;
+  private String title;
   private boolean completed;
 
   public TodoItem(String title) {
@@ -11,6 +11,9 @@ public class TodoItem {
   public TodoItem(String title, boolean completed) {
     this.title = title;
     this.completed = completed;
+  }
+  public void editTitle(String newTitle) {
+    this.title = newTitle;
   }
 
   public String getTitle() {
